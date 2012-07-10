@@ -26,19 +26,38 @@ class Dispatcher {
 	 * 
 	 */
 	function dispatch($url) {
-		// On vérifie si l'url n'est pas d'origine (sans route !)
+		/**
+		 * It is a basic routing
+		 * We clean the url and after we get some information include on the url
+		 */
 		$_url = $this->cleanUrl($url);
 		$_explodeUrl = explode('/', $_url);
 
 		$controller = ucfirst($_explodeUrl[0]);
 		$action = $_explodeUrl[1];
-		require_once(KALON . 'Core' . DS . 'Controller' . DS . 'Controller.php');
-
-		if (file_exists(APP . 'AppController.php')) {
-			require_once(APP . 'AppController.php');
+		
+		/**
+		 * We load the Controller class
+		 */
+		if (file_exists(KALON . 'Core' . DS . 'Controller' . DS . 'Controller.php')) {
+			require_once(KALON . 'Core' . DS . 'Controller' . DS . 'Controller.php');
 		} else {
-			require_once(KALON . 'Core' . DS . 'Controller' . DS . 'AppController.php');
+			exit('Critical error : Controller.php not found on Kalon core');
 		}
+
+		/**
+		 * We load the AppController. It is on Controller folder
+		 */
+		if (file_exists(APP . 'Controllers' . DS . 'AppController.php')) {
+			require_once(APP . 'Controllers' . DS . 'AppController.php');
+		} else {
+			exit('Critical error : AppController must be on Controllers folder');
+		}
+
+		/**
+		 * We load the controller needed
+		 * Before loading the class we verify that the action exist
+		 */
 		$controllerFile = APP . 'Controllers' . DS . $controller . 'Controller.php';
 		if (file_exists($controllerFile)) {
 			require_once($controllerFile);
@@ -50,7 +69,7 @@ class Dispatcher {
 				die('Method ' . $action . ' not found in ' . $controllerFile);
 			}
 		} else {
-			die($controllerFile . ' not found !');
+			die('Critical error :' . $controllerFile . ' not found !');
 		}
 	}
 

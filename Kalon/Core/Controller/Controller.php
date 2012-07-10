@@ -53,7 +53,7 @@ class Controller extends Object {
 		$this->controllerName = $controller;
 		$this->actionName = $action;
 		$this->loadModels();
-		require_once(KALON . 'Core/View/View.php');
+		require_once(KALON . 'Core' . DS . 'View' . DS . 'View.php');
 		call_user_func_array(array($this, $action), $params);
 		$this->render($action);
 	}
