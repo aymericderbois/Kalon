@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteRule ^(images/*)$ Webroot/$1
+RewriteRule ^(css*)$ $1 
+RewriteRule ^(javascript*)$ $1 
+RewriteRule ^([a-zA-Z0-9\-\_\/]*)$ index.php?p=$1
