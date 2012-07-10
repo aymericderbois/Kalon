@@ -13,7 +13,6 @@
  * @copyright DERBOIS Aymeric
  * @license MIT License
  */
-
 class Object {
 
 	function toString() {

@@ -26,16 +26,16 @@ define('KALON', 'Kalon' . DS);
 define('ROOT', dirname(__FILE__) . DS);
 define('WEBROOT', 'Webroot' . DS);
 
-require('Kalon/Basics.php');
-require('Kalon/Core/Object.php');
+require('Kalon' . DS . 'Basics.php');
+require('Kalon' . DS . 'Core' . DS . 'Object.php');
 
-require('Kalon/Core/Configure.php');
-require(APP . DS . 'Config/Core.php');
+require('Kalon' . DS . 'Core' . DS . 'Configure.php');
+require(APP . DS . 'Config' . DS . 'Core.php');
 
-require_once('Kalon/Libs/Dispatcher.php');
-require_once('Kalon/Libs/Router.php');
+require_once('Kalon' . DS . 'Libs' . DS . 'Dispatcher.php');
+require_once('Kalon' . DS . 'Libs' . DS . 'Router.php');
 
-require_once(APP . 'Config/Routes.php');
+require_once(APP . 'Config' . DS . 'Routes.php');
 
 // Fix en attendant un routing correct
 $_GET['p'] = array_key_exists('p', $_GET) && !empty ($_GET['p']) ? $_GET['p'] : '/pages/index/';

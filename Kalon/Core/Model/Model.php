@@ -45,7 +45,7 @@ class Model extends Object
 	
   public function __construct()
 	{
-		require_once('Drivers/Driver.php');
+		require_once('Drivers' . DS . 'Driver.php');
 
 		$this->name = empty($this->name) ? get_class($this) : $this->name;
 		$this->table = empty($this->table) ? get_class($this) . 's' : $this->table;
@@ -53,7 +53,7 @@ class Model extends Object
 
 	public function test()
 	{
-		require_once('Drivers/MysqlDriver.php');
+		require_once('Drivers' . DS . 'MysqlDriver.php');
 		$this->dbDriver = new MysqlDriver();
 		$this->dbDriver->connect('localhost', 'root', 'root', 'myrank');
 		$this->dbDriver->showColumns('users');

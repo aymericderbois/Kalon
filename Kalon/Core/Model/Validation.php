@@ -1,13 +1,11 @@
 <?php
 
-class Validation extends Object
-{
+class Validation extends Object {
 
-	function getInstance()
-	{
+	function getInstance() {
 		static $instance = array();
 
-		if(!$instance){
+		if (!$instance) {
 			$instance = new Validation();
 		}
 		return $instance;
@@ -20,8 +18,7 @@ class Validation extends Object
 	 * @param int $max
 	 * @return bool 
 	 */
-	function between($value, $min, $max)
-	{
+	function between($value, $min, $max) {
 		$_len = mb_strlen($value);
 		return ($_len >= $min && $_len <= $max);
 	}
