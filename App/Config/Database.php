@@ -2,7 +2,7 @@
 
 class DBConfig {
 
-	var $default = array(
+	static var $default = array(
 			'driver' => 'mysql',
 			'persistent' => false,
 			'host' => 'localhost',
