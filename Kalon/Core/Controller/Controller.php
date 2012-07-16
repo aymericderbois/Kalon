@@ -82,13 +82,13 @@ class Controller extends Object {
 	 */
 	public function loadModels() {
 		if (is_bool($this->uses) || (is_array($this->uses) && sizeof($this->uses) > 0)) {
-			// On va charger le app_model de l'application si il existe. Sinon on charge le app_model du core.
+			// On va charger le AppModel de l'application si il existe.
 			// On charge l'ensemble des models de la liste
 			require_once(KALON . 'Core' . DS . 'Model' . DS . 'Model.php');
 			if (file_exists(APP . 'AppModel.php')) {
 				require_once(APP . 'AppModel.php');
 			} else {
-				require_once(KALON . 'Core' . DS . 'Model' . DS . 'AppModel.php');
+				die ('Error : AppModel doesn\'t exist');
 			}
 			if ($this->uses === false) {
 				// Il n'y a pas de model choisis, on en prends celui par défault
@@ -111,7 +111,7 @@ class Controller extends Object {
 	 * @param type $value 
 	 */
 	public function set($var, $value) {
-		$this->vars[$name] = $var;
+		$this->vars[$var] = $value;
 	}
 
 	/**

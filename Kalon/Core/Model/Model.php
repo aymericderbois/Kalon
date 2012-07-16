@@ -15,17 +15,11 @@
  */
 class Model extends Object
 {
-
-	/**
-	 * 
-	 * @var object
-	 */
-	private $dbDriver = null;
 	/**
 	 * Tableau contenant les valeurs à valider
 	 * @var array
 	 */
-	private $toValidate = array();
+	private $toValidate_ = array();
 	/**
 	 * Règle de validation des données
 	 * @var array
@@ -43,20 +37,10 @@ class Model extends Object
 	protected $table = '';
 	protected $prefix = '';
 	
-  public function __construct()
+	public function __construct()
 	{
-		require_once('Drivers' . DS . 'Driver.php');
-
 		$this->name = empty($this->name) ? get_class($this) : $this->name;
 		$this->table = empty($this->table) ? get_class($this) . 's' : $this->table;
-	}
-
-	public function test()
-	{
-		require_once('Drivers' . DS . 'MysqlDriver.php');
-		$this->dbDriver = new MysqlDriver();
-		$this->dbDriver->connect('localhost', 'root', 'root', 'myrank');
-		$this->dbDriver->showColumns('users');
 	}
 
 	/**
@@ -76,7 +60,7 @@ class Model extends Object
 	{
 		require_once('Validation.php');
 		$Validation = Validation::getInstance();
-		$this->toValidate = $values;
+		$this->toValidate_ = $values;
 		$_name = is_null($name) ? $this->name : $name;
 		$error = $_name . 'ValidateErrors';
 		$this->{$error} = array();
