@@ -13,6 +13,7 @@
  * @copyright DERBOIS Aymeric
  * @license MIT License
  */
+
 class AppModel extends Model {
 	
 }
